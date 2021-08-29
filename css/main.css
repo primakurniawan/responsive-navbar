@@ -1,0 +1,130 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: aqua;
+  padding: 0.5rem 0;
+}
+
+.header__logo {
+  width: 100px;
+}
+
+.header__nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  width: 40%;
+  gap: 1rem;
+}
+
+.header__nav ul li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.825rem;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 15px;
+  position: relative;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 20px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.5s;
+}
+
+.menu-toggle input {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.menu-toggle span:nth-child(2) {
+  transform-origin: 0 0;
+}
+
+.menu-toggle span:nth-child(4) {
+  transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2) {
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.menu-toggle input:checked ~ span:nth-child(3) {
+  opacity: 0;
+}
+
+.menu-toggle input:checked ~ span:nth-child(4) {
+  transform: rotate(-45deg) translate(-1px, 0px);
+}
+
+/* breakpoints */
+
+/* tablet */
+@media (max-width: 768px) {
+  .header__nav ul {
+    width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    overflow: hidden;
+  }
+  .header__nav ul {
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 50%;
+    background-color: aqua;
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s;
+  }
+
+  .header__nav ul.slide {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
